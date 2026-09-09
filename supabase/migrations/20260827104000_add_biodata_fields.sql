@@ -1,0 +1,16 @@
+ALTER TABLE public.applications
+ADD COLUMN dob text,
+ADD COLUMN school_name text,
+ADD COLUMN college_name text,
+ADD COLUMN specialization text,
+ADD COLUMN year_of_passing text,
+ADD COLUMN aadhar_no text,
+ADD COLUMN religion_caste text,
+ADD COLUMN reference_by text,
+ADD COLUMN languages_known text,
+ADD COLUMN mother_name text,
+ADD COLUMN father_name text,
+ADD COLUMN mother_occupation text,
+ADD COLUMN father_occupation text,
+ADD COLUMN emergency_contact_no text,
+ADD COLUMN annual_income text;
