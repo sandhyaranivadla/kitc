@@ -1,0 +1,26 @@
+# Dependencies (Vercel installs these during build)
+node_modules
+
+# Build output (Vercel builds from source)
+dist
+dist-ssr
+.output
+.vinxi
+.nitro
+
+# Development files
+.git
+.vscode
+.idea
+*.log
+*.local
+.DS_Store
+
+# Supabase local config
+supabase
+
+# Scratch files
+scratch_register.tsx
+
+# Lock file (Vercel uses package.json)
+# package-lock.json
