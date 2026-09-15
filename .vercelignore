@@ -17,7 +17,8 @@ dist-ssr
 .DS_Store
 
 # Supabase local config
-supabase
+/supabase
+
 
 # Scratch files
 scratch_register.tsx
