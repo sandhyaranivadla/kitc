@@ -4,7 +4,7 @@ import { Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { CENTERS, ORG } from "@/data/kitc";
 import { KitcLogo } from "@/components/site/KitcLogo";
 
-export function Footer() {
+export function Footer({ onOpenFeedback }: { onOpenFeedback?: () => void } = {}) {
   return (
     <footer className="mt-10 border-t border-border bg-primary text-primary-foreground">
       <div className="container-page grid gap-6 py-6 md:grid-cols-4 md:py-7">
@@ -37,6 +37,17 @@ export function Footer() {
             <li><Link to="/register" className="opacity-80 hover:opacity-100 hover:underline">Candidate Registration</Link></li>
             <li><Link to="/donate" className="opacity-80 hover:opacity-100 hover:underline">Donate / CSR</Link></li>
             <li><Link to="/hire" className="opacity-80 hover:opacity-100 hover:underline">Hire From Us</Link></li>
+            {onOpenFeedback && (
+              <li>
+                <button
+                  type="button"
+                  onClick={onOpenFeedback}
+                  className="opacity-80 hover:opacity-100 hover:underline text-left cursor-pointer text-[#fbc531] font-semibold"
+                >
+                  ★ Student Feedback
+                </button>
+              </li>
+            )}
           </ul>
         </div>
 

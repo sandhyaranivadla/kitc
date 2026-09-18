@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 import { PageHero, Section } from "@/components/site/Section";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -35,8 +36,6 @@ const PHOTOS = [
   { src: "/images/gallery/gallery_12.jpg", alt: "KITC training center event" },
   { src: "/images/gallery/gallery_13.jpg", alt: "KITC community event" },
   { src: "/images/gallery/gallery_14.jpg", alt: "Skills training workshop" },
-  { src: "/images/gallery/gallery_15.jpg", alt: "KITC graduation ceremony" },
-  { src: "/images/gallery/gallery_16.jpg", alt: "Practical training session" },
   { src: "/images/gallery/gallery_17.jpg", alt: "Student activities at KITC" },
   { src: "/images/gallery/gallery_18.jpg", alt: "KITC training program" },
   { src: "/images/gallery/gallery_19.jpg", alt: "Youth empowerment at KITC" },
@@ -87,38 +86,39 @@ function GalleryPage() {
       <Section>
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {PHOTOS.map((photo, i) => (
-            <button
-              key={i}
-              type="button"
-              id={`gallery-photo-${i + 1}`}
-              onClick={() => openLightbox(i)}
-              className="group relative overflow-hidden rounded-xl border border-border bg-card shadow-card focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-              aria-label={`View photo: ${photo.alt}`}
-            >
-              <img
-                src={photo.src}
-                alt={photo.alt}
-                loading="lazy"
-                width={800}
-                height={600}
-                className="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              {/* Hover overlay with zoom hint */}
-              <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-300 group-hover:bg-black/30">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-10 w-10 text-white opacity-0 drop-shadow-lg transition-opacity duration-300 group-hover:opacity-100"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                  aria-hidden="true"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0zm-2.5 3.5 3.5 3.5" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M11 8v6M8 11h6" />
-                </svg>
-              </div>
-            </button>
+            <ScrollReveal key={i} delay={(i % 8) * 0.05} scale blur direction="up">
+              <button
+                type="button"
+                id={`gallery-photo-${i + 1}`}
+                onClick={() => openLightbox(i)}
+                className="group relative w-full overflow-hidden rounded-xl border border-border bg-card shadow-card transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl hover:border-primary/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                aria-label={`View photo: ${photo.alt}`}
+              >
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  loading="lazy"
+                  width={800}
+                  height={600}
+                  className="h-52 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                />
+                {/* Hover overlay with zoom hint */}
+                <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-all duration-300 group-hover:bg-black/35 backdrop-blur-[1px]">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-10 w-10 text-white opacity-0 drop-shadow-lg transition-all duration-300 group-hover:opacity-100 group-hover:scale-110"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={1.5}
+                    aria-hidden="true"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0zm-2.5 3.5 3.5 3.5" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M11 8v6M8 11h6" />
+                  </svg>
+                </div>
+              </button>
+            </ScrollReveal>
           ))}
         </div>
       </Section>

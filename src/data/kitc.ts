@@ -6,9 +6,9 @@ export const ORG = {
   registered: "30 August 2023",
   entityType: "Non-profit company limited by shares (NGO)",
   sector: "Social work activities without accommodation — vocational training & youth employment",
-  phone: "+91 90000 00000",
-  whatsapp: "https://wa.me/message/YLCFAC6W2B2HP1",
-  instagram: "https://instagram.com/kakatheeyaindustrialtraining",
+  phone: "+91 99082 91309",
+  whatsapp: "https://wa.me/919908291309",
+  instagram: "https://www.instagram.com/kakatheeyafoundation/",
   email: "info@kakatheeyagroup.com",
   registeredAddress:
     "House No. 2-23, MIGH-23, APHB Colony, Medchal Village, Medchal, K.V. Rangareddy, Telangana 501401",
@@ -37,12 +37,23 @@ export const IMPACT = [
   { label: "Short-course fee", value: "Free" },
 ] as const;
 
+export type ProgramPricing = {
+  label: string;
+  amount: string;
+  note?: string;
+};
+
 export type Program = {
   slug: string;
   title: string;
   track: "short-term" | "industrial";
+  category?: string;
   duration: string;
+  hours?: string;
+  timings?: string;
   fee: string;
+  pricingOptions?: ProgramPricing[];
+  modes?: string[];
   eligibility: string;
   summary: string;
   outcomes: string[];
@@ -50,6 +61,244 @@ export type Program = {
 };
 
 export const PROGRAMS: Program[] = [
+  {
+    slug: "business-associate",
+    title: "Business Associate (BA)",
+    track: "short-term",
+    category: "Vocational & Business",
+    duration: "Full Course",
+    hours: "9 hours / day",
+    timings: "9:00 AM to 5:00 PM",
+    fee: "Free / Subsidised (Contact Centre)",
+    modes: ["Offline Classroom", "Lab Practice"],
+    eligibility: "Any degree / diploma / 10+2. Eager to launch a career in corporate business operations.",
+    summary:
+      "A comprehensive corporate-readiness programme covering spoken English, essential life & value skills, computer operations, Tally, GST and typing with dedicated placement support.",
+    outcomes: [
+      "Job-ready for Business Associate, Accounts Assistant & Office Operations roles",
+      "Proficient in Tally Prime, GST filing basics, and corporate billing",
+      "High touch-typing speed and professional MS Office workflows",
+      "Fluent workplace spoken English, interview preparedness & verified certification",
+    ],
+    modules: [
+      {
+        title: "Accounting & GST Practice",
+        points: [
+          "Tally fundamentals: ledgers, vouchers, day-book and inventory",
+          "GST concepts, invoicing, tax rates and basic filing procedures",
+          "Bank reconciliation, cash flows and business reporting",
+        ],
+      },
+      {
+        title: "Computer Basics & Touch Typing",
+        points: [
+          "Touch typing speed, accuracy drills and document formatting",
+          "MS Excel spreadsheets, lookup formulas, charts and billing templates",
+          "MS Word business letters, resumes, emailing and online tools",
+        ],
+      },
+      {
+        title: "Spoken English & Workplace Communication",
+        points: [
+          "Spoken English fluency, vocabulary and pronunciation drills",
+          "Professional telephone etiquette, email writing and client handling",
+          "Interview simulations, group discussions and self-introduction",
+        ],
+      },
+      {
+        title: "Life Skills & Value Skills",
+        points: [
+          "Workplace ethics, integrity, discipline and accountability",
+          "Time management, emotional intelligence and goal setting",
+          "Teamwork, leadership basics and continuous self-improvement",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "java-python",
+    title: "JAVA / PYTHON Development",
+    track: "short-term",
+    category: "IT & Software",
+    duration: "3 months",
+    hours: "3 hours / day",
+    timings: "Flexible (8:00 AM – 11:00 AM | 11:00 AM – 2:00 PM | 3:00 PM – 6:00 PM)",
+    fee: "Starts from ₹15,000 (Basic) · ₹25,000 (Expert)",
+    pricingOptions: [
+      {
+        label: "Basic Track",
+        amount: "₹15,000",
+        note: "Basics of Java / Python, core OOP, soft skills classes, daily lab exercises",
+      },
+      {
+        label: "Expert Mentorship Track",
+        amount: "₹25,000",
+        note: "Advanced frameworks, real-time project implementation, expert code review & placement guidance",
+      },
+    ],
+    modes: ["Classroom", "Hands-on Lab"],
+    eligibility: "Students, diploma holders, graduates and aspiring software professionals.",
+    summary:
+      "A 3-month practical software engineering programme covering Java or Python programming from foundations to project building, integrated with comprehensive soft-skills coaching.",
+    outcomes: [
+      "Solid command over Java or Python core syntax, OOP and algorithms",
+      "Hands-on project development and database integration",
+      "Confidence in technical coding interviews and soft-skills assessments",
+      "Course completion certificate and placement assistance with hiring partners",
+    ],
+    modules: [
+      {
+        title: "Programming Foundations (Java / Python)",
+        points: [
+          "Data types, operators, control flow, loops and functions",
+          "Object-Oriented Programming (Classes, Inheritance, Polymorphism, Encapsulation)",
+          "Data structures basics, collections framework and file I/O",
+        ],
+      },
+      {
+        title: "Real-world Projects & Database Integration",
+        points: [
+          "Relational databases, SQL queries and data persistence",
+          "End-to-end mini project building with industry coding standards",
+          "Debugging techniques, Git version control basics and problem solving",
+        ],
+      },
+      {
+        title: "Soft Skills & Corporate Readiness",
+        points: [
+          "Soft-skills training sessions, communication and team collaboration",
+          "Technical interview mock drills, resume preparation and HR rounds",
+          "Problem presentation and confidence building for software careers",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "teachers-training",
+    title: "Teacher’s Training Programme",
+    track: "short-term",
+    category: "Teaching & Education",
+    duration: "2 months",
+    hours: "2 hours / day",
+    timings: "Flexible timings (Morning & Evening batches)",
+    fee: "₹6,000 (Without Placement) · ₹12,000 (With Placement)",
+    pricingOptions: [
+      {
+        label: "Without Placement",
+        amount: "₹6,000",
+        note: "Comprehensive 2-month pedagogical training and teacher certification",
+      },
+      {
+        label: "With Placement Assistance",
+        amount: "₹12,000",
+        note: "Full training, teaching demonstrations, school interviews & placement assistance",
+      },
+    ],
+    modes: ["Offline Classroom", "Teaching Simulation"],
+    eligibility: "Aspiring teachers, graduates, home educators and educators seeking modern instructional certification.",
+    summary:
+      "A 2-month certified instructional programme preparing modern educators with contemporary teaching methodologies, child psychology, classroom management and placement assistance.",
+    outcomes: [
+      "Command over modern interactive teaching methodologies and lesson design",
+      "Classroom management, student psychology and engaging board presentations",
+      "Spoken English fluency, voice modulation and teacher presence",
+      "Institutional placement support in reputed partner schools (placement track)",
+    ],
+    modules: [
+      {
+        title: "Pedagogy & Teaching Methodologies",
+        points: [
+          "Learner-centric pedagogical approaches and child psychology basics",
+          "Micro-teaching practice, live mock teaching sessions and peer feedback",
+          "Effective whiteboard/blackboard utilization and visual teaching aids",
+        ],
+      },
+      {
+        title: "Lesson Planning & Student Assessment",
+        points: [
+          "Structured daily and weekly lesson plan preparation",
+          "Activity-based learning, inquiry methods and creative storytelling",
+          "Formative and summative student assessment strategies",
+        ],
+      },
+      {
+        title: "Classroom Management & Communication",
+        points: [
+          "Positive classroom discipline, student motivation and conflict resolution",
+          "Teacher communication, voice projection and body language",
+          "Parent-teacher meeting communication and academic progress reporting",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "home-tutors",
+    title: "Home Tutors Programme (Std 1st – 10th)",
+    track: "short-term",
+    category: "School Academics & Tutoring",
+    duration: "Monthly / Academic Year",
+    hours: "Flexible batch hours",
+    timings: "Flexible timings (Morning / Evening personalized slots)",
+    fee: "From ₹5,000 / month (Online & Offline)",
+    pricingOptions: [
+      {
+        label: "Class 1st – 5th (Online)",
+        amount: "₹5,000 / month",
+        note: "Interactive live digital sessions, foundational literacy & numeracy",
+      },
+      {
+        label: "Class 1st – 5th (Offline)",
+        amount: "₹8,000 / month",
+        note: "Personalized in-person home tutoring with individualized attention",
+      },
+      {
+        label: "Class 6th – 10th (Online)",
+        amount: "₹5,000 / month",
+        note: "Subject-expert online coaching in Maths, Science & English",
+      },
+      {
+        label: "Class 6th – 10th (Offline)",
+        amount: "₹12,000 / month",
+        note: "Dedicated 1-on-1 home tutoring for board exam excellence",
+      },
+    ],
+    modes: ["Online", "Offline (Doorstep Home Tutoring)"],
+    eligibility: "Students of Standards 1st through 10th (State Board, CBSE, ICSE).",
+    summary:
+      "Expert one-on-one and personalized home tutoring for school students in standards 1 to 10. Available in flexible Online and Offline modes to ensure top academic scores.",
+    outcomes: [
+      "Mastery of core concepts in Mathematics, Science, Social and English",
+      "Significant improvement in school grades, exam scores and conceptual clarity",
+      "Regular assessments, homework supervision and monthly progress reports for parents",
+      "Individualized pace catering to the student's unique learning needs",
+    ],
+    modules: [
+      {
+        title: "Foundational & Advanced Academics",
+        points: [
+          "Personalized coaching aligned with CBSE, ICSE and Telangana State Board",
+          "In-depth concept explanation in Mathematics and Science",
+          "Languages, Grammar, and Social Sciences mastery",
+        ],
+      },
+      {
+        title: "Test Preparation & Regular Assessments",
+        points: [
+          "Weekly chapter tests, revision drills and mock examinations",
+          "Past 5-year question paper solving and exam time management",
+          "Techniques for error-free answers and high mark scoring",
+        ],
+      },
+      {
+        title: "Personalized Mentorship & Parent Connect",
+        points: [
+          "Daily homework assistance and disciplined study habit formulation",
+          "Overcoming subject anxiety and building self-confidence",
+          "Regular parent updates on performance and learning milestones",
+        ],
+      },
+    ],
+  },
   {
     slug: "vocational-soft-skills",
     title: "Vocational & Soft Skills Programme",
@@ -287,9 +536,9 @@ export const TEAM_MEMBERS: TeamMember[] = [
   { name: "K. MALLESH", role: "BDM MANAGER", image: "/images/team/4.png" },
   { name: "PADMAVATI", role: "ADMINISTRATOR", image: "/images/team/padmavathi.jpg" },
   { name: "NISHAT FATIMA", role: "CHANGE MAKER & ADMINISTRATOR", image: "/images/team/fatima.jpg" },
-  { name: "MS. VANDANA", role: "CHANGE MAKERS & ADMINISTRATOR", image: "/images/team/vandana.jpg" },
+  { name: "M.S.Vandana", role: "CHANGE MAKER & ADMINISTRATOR", image: "/images/team/vandana.jpg" },
   { name: "V. PAVAN", role: "CENTER INCHARGE", image: "/images/team/2.png" },
-  { name: "BHAVANI", role: "CHANGE MAKER", image: "/images/team/3.png" },
+  { name: "BHAVANI", role: "CHANGE MAKER", image: "/images/team/bhavani.jpg" },
 ];
 
 export interface StatutoryDocument {
@@ -371,6 +620,60 @@ export const STATUTORY_DOCUMENTS: StatutoryDocument[] = [
     filename: "12A-Certificate.pdf",
     pdfUrl: "/documents/12A-Certificate.pdf",
     fallbackUrl: "https://kakatheeyagroup.com/wp-content/uploads/2023/11/12A-Certificate.pdf",
+  },
+];
+
+export interface DonationItem {
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  impact: string;
+  image: string;
+  suggestedQty: string;
+  badge: string;
+}
+
+export const DONATION_ITEMS: DonationItem[] = [
+  {
+    id: "notebooks",
+    title: "Notebooks & Stationery Kits",
+    category: "Essential Study Supplies",
+    description: "Ruled and unruled notebooks, writing pens, geometry kits, and stationery essentials for aspiring learners.",
+    impact: "Equips students from economically weaker households with foundational study materials for their entire course.",
+    image: "/images/donations/notebooks.jpg",
+    suggestedQty: "Sets of 10, 25, 50 or 100",
+    badge: "Urgent Need",
+  },
+  {
+    id: "benches",
+    title: "Classroom Benches & Desks",
+    category: "Campus Infrastructure",
+    description: "Durable dual/three-seater metal and wooden classroom benches to furnish training rooms.",
+    impact: "Provides ergonomic, comfortable seating for 2–3 ambitious students per bench in our daily batches.",
+    image: "/images/donations/benches.jpg",
+    suggestedQty: "1, 2, 5 or 10 Benches",
+    badge: "High Impact",
+  },
+  {
+    id: "bags",
+    title: "School & College Backpacks",
+    category: "Student Gear",
+    description: "High-quality, water-resistant backpacks and carry bags for students attending our courses.",
+    impact: "Protects study books, assignments, and notes, giving young candidates confidence and pride.",
+    image: "/images/donations/bags.jpg",
+    suggestedQty: "Sets of 5, 10, 25 or 50",
+    badge: "Everyday Essential",
+  },
+  {
+    id: "chairs",
+    title: "Study & Computer Lab Chairs",
+    category: "Lab & Seminar Seating",
+    description: "Comfortable ergonomic study chairs for computer labs, typing booths, and faculty sessions.",
+    impact: "Expands our Medchal and Alwal computer lab capacity so more candidates can practice simultaneously.",
+    image: "/images/donations/chairs.jpg",
+    suggestedQty: "5, 10, 20 or 50 Chairs",
+    badge: "Lab Upgradation",
   },
 ];
 

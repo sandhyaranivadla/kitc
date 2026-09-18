@@ -17,8 +17,10 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { PageHero, Section } from "@/components/site/Section";
+import { StaggerContainer, StaggerItem } from "@/components/ui/stagger";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
 
 const workshopImage = "/images/gallery/gallery_17.jpg";
 
@@ -121,7 +123,7 @@ function AboutPage() {
       {/* Mission, vision, values */}
       <div className="bg-secondary/60">
         <Section title="Mission, vision and values">
-          <div className="grid gap-6 md:grid-cols-3">
+          <StaggerContainer className="grid gap-6 md:grid-cols-3">
             {[
               {
                 icon: Target,
@@ -139,17 +141,19 @@ function AboutPage() {
                 body: "Be focused. Be determined. Be empowered. We hold trainees and ourselves to the same discipline.",
               },
             ].map((item) => (
-              <Card key={item.title} className="shadow-card">
-                <CardContent className="p-4 sm:p-5">
-                  <span className="mb-3 grid h-9 w-9 place-items-center rounded-lg bg-primary text-primary-foreground">
-                    <item.icon className="h-4 w-4" />
-                  </span>
-                  <h3 className="font-display text-base font-bold">{item.title}</h3>
-                  <p className="mt-1.5 text-xs sm:text-sm text-muted-foreground">{item.body}</p>
-                </CardContent>
-              </Card>
+              <StaggerItem key={item.title}>
+                <Card className="shadow-card h-full">
+                  <CardContent className="p-4 sm:p-5">
+                    <span className="mb-3 grid h-9 w-9 place-items-center rounded-lg bg-primary text-primary-foreground">
+                      <item.icon className="h-4 w-4" />
+                    </span>
+                    <h3 className="font-display text-base font-bold">{item.title}</h3>
+                    <p className="mt-1.5 text-xs sm:text-sm text-muted-foreground">{item.body}</p>
+                  </CardContent>
+                </Card>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </Section>
       </div>
 
@@ -159,8 +163,9 @@ function AboutPage() {
         title="Our Driving Principles"
         description="KAKATHEEYA was formed with 3 driving principles in mind:"
       >
-        <div className="grid gap-6 md:grid-cols-3">
+        <StaggerContainer className="grid gap-6 md:grid-cols-3">
           {DRIVING_PRINCIPLES.map((principle, index) => (
+            <StaggerItem key={index}>
             <Card
               key={index}
               className="group relative overflow-hidden border-border/80 bg-card shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg"
@@ -174,8 +179,9 @@ function AboutPage() {
                 </p>
               </CardContent>
             </Card>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </Section>
 
       {/* Iconic Navigation Cards (Website Brand Colors, Unmoved Stationary Layout) */}
@@ -189,15 +195,17 @@ function AboutPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.30_0.10_254)] via-[oklch(0.38_0.12_254)] to-[oklch(0.30_0.10_254)] opacity-95 backdrop-blur-[1px]" />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-6 md:gap-4">
+          <StaggerContainer className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-6 md:gap-4">
             {HUB_ITEMS.map((item) => {
               const Icon = item.icon;
               const isActive = activeTab === item.id;
               return (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => handleTabClick(item.id)}
+                <StaggerItem key={item.id}>
+                  <motion.button
+                    whileHover={{ scale: isActive ? 1 : 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    type="button"
+                    onClick={() => handleTabClick(item.id)}
                   className={`group relative flex flex-col items-center justify-between rounded-2xl p-5 sm:p-6 text-center transition-all duration-300 focus:outline-none h-[190px] sm:h-[205px] ${
                     isActive
                       ? "border-2 border-primary bg-card text-card-foreground ring-4 ring-white/30 shadow-2xl scale-105"
@@ -235,10 +243,11 @@ function AboutPage() {
                         : "w-6 bg-primary/20 group-hover:w-10 group-hover:bg-primary/60"
                     }`}
                   />
-                </button>
+                  </motion.button>
+                </StaggerItem>
               );
             })}
-          </div>
+          </StaggerContainer>
         </div>
       </div>
 
@@ -274,32 +283,33 @@ function AboutPage() {
             title="Our Team"
             description="Meet the dedicated leaders, trainers, and supervisors driving KITC's mission of empowering youth."
           >
-            <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+            <StaggerContainer className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
               {TEAM_MEMBERS.map((member, index) => (
-                <Card
-                  key={index}
-                  className="group flex flex-col items-center rounded-2xl border border-border/80 bg-card p-6 sm:p-8 text-center shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg"
-                >
-                  <div className="relative aspect-square w-44 sm:w-52 overflow-hidden rounded-full bg-muted/40 shadow-sm ring-1 ring-border/50">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      width={500}
-                      height={500}
-                      className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="mt-6 flex flex-col items-center">
-                    <h3 className="font-display text-lg font-bold uppercase tracking-tight text-foreground sm:text-xl">
-                      {member.name}
-                    </h3>
-                    <div className="mt-2.5 inline-flex items-center rounded-full bg-primary/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
-                      {member.role}
+                <StaggerItem key={index}>
+                  <Card
+                    className="group flex h-full flex-col items-center rounded-2xl border border-border/80 bg-card p-6 sm:p-8 text-center shadow-card transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10"
+                  >
+                    <div className="relative aspect-square w-44 sm:w-52 overflow-hidden rounded-full bg-muted/40 shadow-sm ring-2 ring-border/60 transition-all duration-500 group-hover:ring-4 group-hover:ring-primary/40 group-hover:shadow-lg">
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        width={500}
+                        height={500}
+                        className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
+                      />
                     </div>
-                  </div>
-                </Card>
+                    <div className="mt-6 flex flex-col items-center">
+                      <h3 className="font-display text-lg font-bold uppercase tracking-tight text-foreground sm:text-xl transition-colors duration-300 group-hover:text-primary">
+                        {member.name}
+                      </h3>
+                      <div className="mt-2.5 inline-flex items-center rounded-full bg-primary/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-white">
+                        {member.role}
+                      </div>
+                    </div>
+                  </Card>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           </Section>
         )}
 

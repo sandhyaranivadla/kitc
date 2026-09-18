@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createFileRoute } from "@tanstack/react-router";
-import { CheckCircle2, MapPin } from "lucide-react";
+import { CheckCircle2, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -12,7 +12,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { CENTERS } from "@/data/kitc";
+import { CENTERS, ORG } from "@/data/kitc";
 import { contactSchema, submitContactMessage, type ContactInput } from "@/lib/leads";
 
 export const Route = createFileRoute("/contact")({
@@ -60,6 +60,45 @@ function ContactPage() {
 
       <Section>
         <div className="mx-auto max-w-4xl flex flex-col gap-8">
+          {/* Direct Calling & Helpline Quick Card */}
+          <div className="grid gap-4 sm:grid-cols-3">
+            <Card className="border border-border/80 bg-card p-4 transition-all hover:border-primary/50 shadow-sm">
+              <a href={`tel:${ORG.phone.replace(/\s/g, "")}`} className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary shrink-0">
+                  <Phone className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Direct Call</p>
+                  <p className="font-display text-sm font-bold text-foreground">{ORG.phone}</p>
+                </div>
+              </a>
+            </Card>
+
+            <Card className="border border-border/80 bg-card p-4 transition-all hover:border-primary/50 shadow-sm">
+              <a href={ORG.whatsapp} target="_blank" rel="noreferrer" className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-600 shrink-0">
+                  <MessageCircle className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">WhatsApp Chat</p>
+                  <p className="font-display text-sm font-bold text-foreground">Instant Support</p>
+                </div>
+              </a>
+            </Card>
+
+            <Card className="border border-border/80 bg-card p-4 transition-all hover:border-primary/50 shadow-sm">
+              <a href={`mailto:${ORG.email}`} className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary shrink-0">
+                  <Mail className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Email Desk</p>
+                  <p className="font-display text-xs font-bold text-foreground truncate max-w-[150px]">{ORG.email}</p>
+                </div>
+              </a>
+            </Card>
+          </div>
+
           {/* Main Credentials Card */}
           {done ? (
             <Card className="shadow-card w-full">

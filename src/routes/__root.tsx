@@ -4,16 +4,19 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
+import { useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Toaster } from "@/components/ui/sonner";
+import { FeedbackModal, FloatingFeedbackButton } from "@/components/site/FeedbackModal";
 import { supabase } from "@/integrations/supabase/client";
 
 function NotFoundComponent() {
@@ -133,16 +136,48 @@ function RootComponent() {
     return () => data.subscription.unsubscribe();
   }, [router, queryClient]);
 
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
   return (
     <QueryClientProvider client={queryClient}>
+      {/* Top Scroll Indicator */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-[3px] z-[9999] origin-left bg-gradient-to-r from-[#e8a040] via-[#dc2743] to-[#7a1010] shadow-[0_0_8px_rgba(232,160,64,0.6)] pointer-events-none"
+        style={{ scaleX }}
+      />
+      {/* Background Watermark */}
+      <div 
+        className="pointer-events-none fixed inset-0 z-[-1] opacity-[0.03] bg-[url('/images/watermark-logo.jpg')] bg-center bg-no-repeat"
+        style={{ backgroundSize: 'clamp(200px, 50vw, 600px)' }}
+        aria-hidden="true"
+      />
       <div className="flex min-h-screen flex-col">
         <Header />
-        <main className="flex-1">
-          {/* Required: nested routes render here. */}
-          <Outlet />
+        <main className="flex-1 flex flex-col relative">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={pathname}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="flex-1 flex flex-col w-full"
+            >
+              <Outlet />
+            </motion.div>
+          </AnimatePresence>
         </main>
-        <Footer />
+        <Footer onOpenFeedback={() => setFeedbackOpen(true)} />
       </div>
+      <FeedbackModal open={feedbackOpen} onOpenChange={setFeedbackOpen} />
       <Toaster />
     </QueryClientProvider>
   );
