@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { HandHeart, Sparkles, Trophy, Users2 } from "lucide-react";
 
-const youthImage = "/images/gallery/gallery_19.jpg";
+const youthImage = "/images/youth-empowerment.jpg";
 import { PageHero, Section } from "@/components/site/Section";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -61,10 +61,10 @@ function YouthPage() {
         <div className="grid items-center gap-10 md:grid-cols-2">
           <img
             src={youthImage}
-            alt="Young people gathered outdoors during a KITC community outreach session"
-            width={1200}
-            height={900}
-            className="rounded-xl shadow-card"
+            alt="KITC trainees and foundation members gathered during a celebration ceremony"
+            width={1024}
+            height={562}
+            className="rounded-xl shadow-card w-full object-cover"
           />
           <div>
             <h2 className="text-2xl font-bold md:text-3xl">Who we work with</h2>

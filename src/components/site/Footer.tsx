@@ -10,17 +10,17 @@ export function Footer({ onOpenFeedback }: { onOpenFeedback?: () => void } = {})
       <div className="container-page grid gap-6 py-6 md:grid-cols-4 md:py-7">
         {/* Column 1: Logo & Info */}
         <div className="flex flex-col items-start">
-          <div className="inline-block rounded-lg bg-white p-1.5 shadow-sm mb-2">
-            <KitcLogo imgClassName="h-7 w-auto" />
+          <div className="inline-block rounded-xl bg-white p-2 shadow-sm mb-3">
+            <KitcLogo variant="footer" imgClassName="h-8 w-auto" />
           </div>
-          <p className="text-[11px] font-semibold opacity-90 leading-tight">{ORG.legalName}</p>
+          <p className="text-[12px] font-bold text-[#e8a040] leading-tight">{ORG.legalName}</p>
           <p className="mt-1 text-[11px] opacity-75 leading-normal max-w-[220px]">{ORG.tagline}</p>
-          <dl className="mt-2.5 space-y-0.5 text-[10px] opacity-70">
+          <dl className="mt-2.5 space-y-0.5 text-[10px]">
             <div className="flex gap-2">
-              <dt>CIN</dt>
-              <dd>{ORG.cin}</dd>
+              <dt className="text-white/70">CIN</dt>
+              <dd className="font-mono text-[#e8a040] font-bold">{ORG.cin}</dd>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 text-white/70">
               <dt>Registered</dt>
               <dd>{ORG.registered}</dd>
             </div>
@@ -70,15 +70,18 @@ export function Footer({ onOpenFeedback }: { onOpenFeedback?: () => void } = {})
         {/* Column 4: Contact & Socials */}
         <div>
           <h3 className="font-display text-[11px] font-bold uppercase tracking-wider opacity-85">Contact us</h3>
-          <div className="mt-2 space-y-1.5 text-[11px]">
-            <a href={`tel:${ORG.phone.replace(/\s/g, "")}`} className="flex items-center gap-2 opacity-80 hover:opacity-100 hover:underline">
-              <Phone className="h-3 w-3 text-accent" /> {ORG.phone}
+          <div className="mt-2 space-y-2 text-[11px]">
+            <a href={`tel:${ORG.phone.replace(/\s/g, "")}`} className="flex items-center gap-2 opacity-85 hover:opacity-100 hover:underline">
+              <Phone className="h-3 w-3 text-accent shrink-0" /> {ORG.phone}
             </a>
-            <a href={`mailto:${ORG.email}`} className="flex items-center gap-2 opacity-80 hover:opacity-100 hover:underline">
-              <Mail className="h-3 w-3 text-accent" /> {ORG.email}
+            <a href={`tel:${ORG.secondaryPhone.replace(/\s/g, "")}`} className="flex items-center gap-2 opacity-85 hover:opacity-100 hover:underline">
+              <Phone className="h-3 w-3 text-accent shrink-0" /> {ORG.secondaryPhone}
             </a>
-            <a href={ORG.instagram} target="_blank" rel="noreferrer" className="flex items-center gap-2 opacity-80 hover:opacity-100 hover:underline">
-              <Instagram className="h-3 w-3 text-accent" /> Instagram
+            <a href={`mailto:${ORG.email}`} className="flex items-center gap-2 opacity-85 hover:opacity-100 hover:underline break-all">
+              <Mail className="h-3 w-3 text-accent shrink-0" /> {ORG.email}
+            </a>
+            <a href={ORG.instagram} target="_blank" rel="noreferrer" className="flex items-center gap-2 opacity-85 hover:opacity-100 hover:underline">
+              <Instagram className="h-3 w-3 text-accent shrink-0" /> Instagram
             </a>
           </div>
         </div>

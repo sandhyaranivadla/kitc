@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, MessageCircle, Phone, X } from "lucide-react";
+import { Mail, Menu, MessageCircle, Phone, X } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -22,8 +22,47 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10" style={{ background: 'linear-gradient(90deg, #5a0a0a 0%, #8b1a1a 50%, #6b1010 100%)' }}>
-      <div className="container-page flex h-16 items-center justify-between gap-4">
+    <header className="sticky top-0 z-50 border-b border-white/10 shadow-md">
+      {/* Top Utility Taskbar */}
+      <div className="bg-[#3e0707] text-white/90 text-xs py-1.5 px-3 border-b border-white/10">
+        <div className="container-page flex flex-wrap items-center justify-between gap-2 text-[11px] font-medium">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+            <span className="flex items-center gap-1.5 text-white/90">
+              <Phone className="h-3 w-3 text-[#e8a040] shrink-0" />
+              <a href="tel:+919908291309" className="hover:text-white transition-colors">
+                +91 99082 91309
+              </a>
+              <span className="opacity-40">|</span>
+              <a href="tel:+919490440021" className="hover:text-white transition-colors">
+                +91 94904 40021
+              </a>
+            </span>
+            <span className="hidden sm:inline-flex items-center gap-1.5 text-white/80">
+              <Mail className="h-3 w-3 text-[#e8a040] shrink-0" />
+              <a href={`mailto:${ORG.email}`} className="hover:text-white transition-colors">
+                {ORG.email}
+              </a>
+            </span>
+          </div>
+
+          <div className="flex items-center gap-3 text-[11px]">
+            <span className="hidden md:inline text-white/75">
+              Centres: <strong className="text-white font-semibold">Medchal & Alwal</strong> (Telangana)
+            </span>
+            <a
+              href={ORG.whatsapp}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 rounded bg-[#25D366]/20 px-2 py-0.5 text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all font-semibold"
+            >
+              <MessageCircle className="h-3 w-3" /> WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Navigation Bar */}
+      <div className="container-page flex h-16 items-center justify-between gap-4" style={{ background: 'linear-gradient(90deg, #5a0a0a 0%, #8b1a1a 50%, #6b1010 100%)' }}>
         <KitcLogo />
 
         <nav className="hidden items-center gap-1 lg:flex">
@@ -54,9 +93,9 @@ export function Header() {
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-full sm:max-w-md bg-[#FFF8E7] p-0 border-none [&>button]:hidden flex flex-col">
+            <SheetContent side="top" className="w-full bg-[#FFF8E7] p-0 border-b-4 border-[#8b2315] shadow-2xl max-h-[85vh] overflow-y-auto [&>button]:hidden flex flex-col">
               <div className="flex items-center justify-between p-4 pb-2 border-b-2 border-[#8b2315]/10">
-                <KitcLogo />
+                <KitcLogo variant="mobile" />
                 <SheetClose asChild>
                   <Button variant="ghost" size="icon" className="bg-[#d32f2f] hover:bg-[#b71c1c] text-white rounded-md h-10 w-10 ml-auto flex-shrink-0">
                     <X className="h-6 w-6" />
@@ -123,7 +162,19 @@ export function Header() {
                       href={`tel:${ORG.phone.replace(/\s/g, "")}`}
                       className="flex justify-center items-center gap-2 rounded-md bg-[#8b2315] text-white px-4 py-3 text-base font-medium transition-colors hover:bg-[#6b1b10]"
                     >
-                      <Phone className="h-4 w-4" /> Call the centre
+                      <Phone className="h-4 w-4" /> Call: {ORG.phone}
+                    </a>
+                    <a
+                      href={`tel:${ORG.secondaryPhone.replace(/\s/g, "")}`}
+                      className="flex justify-center items-center gap-2 rounded-md bg-[#5a0a0a] text-white px-4 py-3 text-base font-medium transition-colors hover:bg-[#420606]"
+                    >
+                      <Phone className="h-4 w-4" /> Call: {ORG.secondaryPhone}
+                    </a>
+                    <a
+                      href={`mailto:${ORG.email}`}
+                      className="flex justify-center items-center gap-2 rounded-md border border-[#8b2315]/40 bg-white text-[#8b2315] px-4 py-2.5 text-sm font-semibold transition-colors hover:bg-[#8b2315]/5"
+                    >
+                      <Mail className="h-4 w-4" /> {ORG.email}
                     </a>
                     <a
                       href={ORG.whatsapp}

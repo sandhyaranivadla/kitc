@@ -121,10 +121,13 @@ function ProgramsPage() {
               Speak directly with our academic counsellors at Medchal or Alwal. We assist students with batch timings, fee details, and enrollment.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <Button asChild size="lg">
-                <a href="tel:9908291309">Call 9908291309</a>
+              <Button asChild size="lg" className="bg-[#8b1a1a] hover:bg-[#6b1010] text-white shadow-md">
+                <a href="tel:9908291309">Call 99082 91309</a>
               </Button>
-              <Button asChild size="lg" variant="outline">
+              <Button asChild size="lg" className="bg-[#8b1a1a] hover:bg-[#6b1010] text-white shadow-md">
+                <a href="tel:9490440021">Call 94904 40021</a>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="shadow-sm">
                 <Link to="/register">Apply Online Now</Link>
               </Button>
             </div>
@@ -143,10 +146,13 @@ function ProgramCard({ program }: { program: Program }) {
     program.slug === "home-tutors";
 
   return (
-    <Card className="group relative flex h-full flex-col overflow-hidden border border-border/80 bg-card transition-all duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+    <Card className="group relative flex h-full flex-col overflow-hidden rounded-2xl border-2 border-slate-200/90 dark:border-slate-800 bg-card shadow-md transition-all duration-300 hover:-translate-y-2 hover:border-[#8b1a1a] hover:shadow-2xl hover:shadow-[#8b1a1a]/15 ring-1 ring-black/5">
+      {/* Top Accent Gradient Border Strip */}
+      <div className="h-1.5 w-full bg-gradient-to-r from-[#8b1a1a] via-[#e8a040] to-[#0eb39e] group-hover:from-[#0eb39e] group-hover:via-[#e8a040] group-hover:to-[#8b1a1a] transition-all duration-500" />
+
       {isNew && (
-        <div className="absolute right-3 top-3">
-          <span className="inline-flex items-center rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+        <div className="absolute right-3.5 top-4 z-10">
+          <span className="inline-flex items-center rounded-full bg-emerald-500/15 border border-emerald-500/30 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 backdrop-blur-sm shadow-sm">
             Featured
           </span>
         </div>

@@ -7,9 +7,12 @@ export const ORG = {
   entityType: "Non-profit company limited by shares (NGO)",
   sector: "Social work activities without accommodation — vocational training & youth employment",
   phone: "+91 99082 91309",
+  secondaryPhone: "+91 94904 40021",
+  phones: ["+91 99082 91309", "+91 94904 40021"],
   whatsapp: "https://wa.me/919908291309",
   instagram: "https://www.instagram.com/kakatheeyafoundation/",
-  email: "info@kakatheeyagroup.com",
+  email: "Kakatheeyaindustrialtraining@gmail.com",
+  secondaryEmail: "info@kakatheeyagroup.com",
   registeredAddress:
     "House No. 2-23, MIGH-23, APHB Colony, Medchal Village, Medchal, K.V. Rangareddy, Telangana 501401",
 } as const;
@@ -18,6 +21,7 @@ export const CENTERS = [
   {
     id: "medchal",
     name: "Medchal Centre",
+    state: "Telangana",
     address:
       "House No. 2-23, MIGH-23, APHB Colony, Medchal Village, Medchal, K.V. Rangareddy, Telangana 501401",
     mapQuery: "APHB Colony, Medchal Village, Medchal, Rangareddy, Telangana 501401",
@@ -25,14 +29,16 @@ export const CENTERS = [
   {
     id: "alwal",
     name: "Alwal Centre",
-    address: "Alwal, Secunderabad, Hyderabad, Telangana 500010",
+    state: "Telangana",
+    address:
+      "Plot No. 12 & 13, Near Old Alwal Cross Road / IGNOU Center, Lothukunta, Alwal, Secunderabad, Medchal-Malkajgiri District, Telangana 500010",
     mapQuery: "Alwal, Secunderabad, Hyderabad, Telangana 500010",
   },
 ] as const;
 
 export const IMPACT = [
-  { label: "Students upskilled & employed", value: "250+" },
-  { label: "Hiring partners", value: "10+" },
+  { label: "Students upskilled & employed", value: "2000+" },
+  { label: "Hiring companies", value: "20+" },
   { label: "Training centres", value: "2" },
   { label: "Short-course fee", value: "Free" },
 ] as const;
@@ -539,6 +545,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   { name: "M.S.Vandana", role: "CHANGE MAKER & ADMINISTRATOR", image: "/images/team/vandana.jpg" },
   { name: "V. PAVAN", role: "CENTER INCHARGE", image: "/images/team/2.png" },
   { name: "BHAVANI", role: "CHANGE MAKER", image: "/images/team/bhavani.jpg" },
+  { name: "SAMANTHULA PRAVALIKA", role: "CHANGE MAKER", image: "/images/team/pravalika.jpg" },
 ];
 
 export interface StatutoryDocument {

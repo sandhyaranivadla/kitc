@@ -25,7 +25,6 @@ import { motion } from "framer-motion";
 const workshopImage = "/images/gallery/gallery_17.jpg";
 
 import {
-  CENTERS,
   DRIVING_PRINCIPLES,
   ORG,
   STATUTORY_DOCUMENTS,
@@ -89,66 +88,101 @@ function AboutPage() {
             alt="Trainers guiding students during a practical session"
             width={1200}
             height={900}
-            className="rounded-xl shadow-card"
+            className="rounded-2xl shadow-lg border-2 border-border/60"
           />
           <div>
-            <h2 className="text-2xl font-bold md:text-3xl">Who we are</h2>
-            <p className="mt-4 text-muted-foreground">
-              KITC was registered on {ORG.registered} as a {ORG.entityType.toLowerCase()}, working in{" "}
+            <h2 className="font-display text-3xl font-extrabold md:text-4xl text-[#1a1a1a] tracking-tight">
+              Who we are
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-slate-700 font-medium">
+              <strong className="text-[#8b1a1a] font-bold">KITC</strong> (Kakatheeya Industrial Training Centre and Association) was registered on{" "}
+              <strong className="text-foreground font-semibold">{ORG.registered}</strong> as a{" "}
+              <span className="text-[#b45309] font-bold">{ORG.entityType.toLowerCase()}</span>, working in{" "}
               {ORG.sector.toLowerCase()}. We run two centres in Hyderabad and deliver a free 35-day vocational
               programme plus six-month industrial training for diploma and engineering students.
             </p>
-            <p className="mt-4 text-muted-foreground">
+            <p className="mt-3 text-base leading-relaxed text-slate-700 font-medium">
               Our approach is simple: teach a skill the market is actually hiring for, build the confidence to use it,
               and stay involved until the candidate is placed.
             </p>
-            <dl className="mt-6 grid gap-2 rounded-lg border border-border bg-card p-5 text-sm shadow-card">
-              <div className="flex justify-between gap-4">
-                <dt className="text-muted-foreground">CIN</dt>
-                <dd className="font-medium">{ORG.cin}</dd>
+            
+            {/* Company Credentials Information Box with Brand Font Colors */}
+            <dl className="mt-6 grid gap-2.5 rounded-2xl border-2 border-[#8b1a1a]/25 bg-gradient-to-br from-card via-[#8b1a1a]/5 to-card p-5 sm:p-6 text-sm shadow-md">
+              <div className="flex flex-col sm:flex-row sm:justify-between gap-1 border-b border-border/60 pb-2">
+                <dt className="text-xs uppercase tracking-wider font-semibold text-muted-foreground">Company Name</dt>
+                <dd className="font-display font-bold text-[#8b1a1a] text-sm sm:text-base text-left sm:text-right">{ORG.legalName}</dd>
               </div>
-              <div className="flex justify-between gap-4">
-                <dt className="text-muted-foreground">Registered on</dt>
-                <dd className="font-medium">{ORG.registered}</dd>
+              <div className="flex justify-between items-center gap-4 border-b border-border/60 pb-2">
+                <dt className="text-xs uppercase tracking-wider font-semibold text-muted-foreground">CIN (Corporate ID)</dt>
+                <dd className="font-mono font-bold text-[#8b1a1a] tracking-wider text-sm">{ORG.cin}</dd>
               </div>
-              <div className="flex justify-between gap-4">
-                <dt className="text-muted-foreground">Entity type</dt>
-                <dd className="text-right font-medium">{ORG.entityType}</dd>
+              <div className="flex justify-between items-center gap-4 border-b border-border/60 pb-2">
+                <dt className="text-xs uppercase tracking-wider font-semibold text-muted-foreground">Registered on</dt>
+                <dd className="font-semibold text-foreground">{ORG.registered}</dd>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:justify-between gap-1 pt-0.5">
+                <dt className="text-xs uppercase tracking-wider font-semibold text-muted-foreground">Entity Type</dt>
+                <dd className="text-left sm:text-right font-bold text-[#b45309]">{ORG.entityType}</dd>
               </div>
             </dl>
           </div>
         </div>
       </Section>
 
-      {/* Mission, vision, values */}
-      <div className="bg-secondary/60">
-        <Section title="Mission, vision and values">
+      {/* Mission, vision, values with customized colors and modern typography */}
+      <div className="bg-secondary/40 py-4">
+        <Section title="Mission, vision and values" description="The core guiding pillars that steer every programme, batch, and placement at KITC.">
           <StaggerContainer className="grid gap-6 md:grid-cols-3">
             {[
               {
                 icon: Target,
                 title: "Mission",
                 body: "Make quality vocational and industrial training free and accessible to underprivileged youth, and connect them to real jobs.",
+                border: "border-2 border-emerald-500/40 hover:border-emerald-600",
+                bg: "bg-gradient-to-b from-emerald-50/80 via-card to-card dark:from-emerald-950/20",
+                titleColor: "text-emerald-900 dark:text-emerald-300",
+                iconBg: "bg-emerald-600 text-white shadow-md shadow-emerald-600/30",
+                textColor: "text-emerald-950/80 dark:text-emerald-200/80",
+                accentLine: "bg-emerald-500",
               },
               {
                 icon: Eye,
                 title: "Vision",
                 body: "A Telangana where a young person's household income never decides whether they can get skilled work.",
+                border: "border-2 border-amber-500/40 hover:border-amber-600",
+                bg: "bg-gradient-to-b from-amber-50/80 via-card to-card dark:from-amber-950/20",
+                titleColor: "text-amber-900 dark:text-amber-300",
+                iconBg: "bg-amber-600 text-white shadow-md shadow-amber-600/30",
+                textColor: "text-amber-950/80 dark:text-amber-200/80",
+                accentLine: "bg-amber-500",
               },
               {
                 icon: Compass,
                 title: "Values",
                 body: "Be focused. Be determined. Be empowered. We hold trainees and ourselves to the same discipline.",
+                border: "border-2 border-[#8b1a1a]/40 hover:border-[#8b1a1a]",
+                bg: "bg-gradient-to-b from-rose-50/80 via-card to-card dark:from-rose-950/20",
+                titleColor: "text-[#8b1a1a] dark:text-rose-300",
+                iconBg: "bg-[#8b1a1a] text-white shadow-md shadow-[#8b1a1a]/30",
+                textColor: "text-rose-950/80 dark:text-rose-200/80",
+                accentLine: "bg-[#8b1a1a]",
               },
             ].map((item) => (
               <StaggerItem key={item.title}>
-                <Card className="shadow-card h-full">
-                  <CardContent className="p-4 sm:p-5">
-                    <span className="mb-3 grid h-9 w-9 place-items-center rounded-lg bg-primary text-primary-foreground">
-                      <item.icon className="h-4 w-4" />
-                    </span>
-                    <h3 className="font-display text-base font-bold">{item.title}</h3>
-                    <p className="mt-1.5 text-xs sm:text-sm text-muted-foreground">{item.body}</p>
+                <Card className={`relative overflow-hidden rounded-2xl ${item.border} ${item.bg} shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl h-full`}>
+                  <div className={`h-1.5 w-full ${item.accentLine}`} />
+                  <CardContent className="p-5 sm:p-6 flex flex-col justify-between h-[calc(100%-6px)]">
+                    <div>
+                      <div className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl ${item.iconBg}`}>
+                        <item.icon className="h-6 w-6" />
+                      </div>
+                      <h3 className={`font-display text-2xl font-black tracking-tight ${item.titleColor}`}>
+                        {item.title}
+                      </h3>
+                      <p className={`mt-3 text-sm font-medium leading-relaxed ${item.textColor}`}>
+                        {item.body}
+                      </p>
+                    </div>
                   </CardContent>
                 </Card>
               </StaggerItem>
@@ -278,39 +312,51 @@ function AboutPage() {
 
         {/* 1. TEAM CONTENT */}
         {activeTab === "team" && (
-          <Section
-            eyebrow="Leadership & Instructors"
-            title="Our Team"
-            description="Meet the dedicated leaders, trainers, and supervisors driving KITC's mission of empowering youth."
-          >
-            <StaggerContainer className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-              {TEAM_MEMBERS.map((member, index) => (
-                <StaggerItem key={index}>
-                  <Card
-                    className="group flex h-full flex-col items-center rounded-2xl border border-border/80 bg-card p-6 sm:p-8 text-center shadow-card transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10"
-                  >
-                    <div className="relative aspect-square w-44 sm:w-52 overflow-hidden rounded-full bg-muted/40 shadow-sm ring-2 ring-border/60 transition-all duration-500 group-hover:ring-4 group-hover:ring-primary/40 group-hover:shadow-lg">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        width={500}
-                        height={500}
-                        className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
-                      />
-                    </div>
-                    <div className="mt-6 flex flex-col items-center">
-                      <h3 className="font-display text-lg font-bold uppercase tracking-tight text-foreground sm:text-xl transition-colors duration-300 group-hover:text-primary">
-                        {member.name}
-                      </h3>
-                      <div className="mt-2.5 inline-flex items-center rounded-full bg-primary/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-white">
-                        {member.role}
+          <div className="relative overflow-hidden bg-gradient-to-b from-[#f8f9fa] via-slate-50 to-[#f1f3f5] dark:from-background dark:via-muted/20 dark:to-background py-6 border-b border-border/80">
+            {/* Ambient decorative lighting orbs */}
+            <div className="absolute top-10 left-10 h-72 w-72 rounded-full bg-[#8b1a1a]/5 blur-3xl pointer-events-none" />
+            <div className="absolute bottom-10 right-10 h-80 w-80 rounded-full bg-[#e8a040]/10 blur-3xl pointer-events-none" />
+
+            <Section
+              eyebrow="Leadership & Instructors"
+              title="Our Team"
+              description="Meet the dedicated leaders, trainers, and supervisors driving KITC's mission of empowering youth."
+            >
+              <StaggerContainer className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+                {TEAM_MEMBERS.map((member, index) => (
+                  <StaggerItem key={index}>
+                    <Card
+                      className="group relative flex h-full flex-col items-center rounded-2xl border-2 border-slate-200/90 dark:border-slate-800 bg-card p-6 sm:p-7 text-center shadow-lg transition-all duration-500 hover:-translate-y-2 hover:border-[#8b1a1a] hover:shadow-2xl hover:shadow-[#8b1a1a]/15 ring-1 ring-black/5 overflow-hidden"
+                    >
+                      {/* Top Accent Strip */}
+                      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#8b1a1a] via-[#e8a040] to-[#0eb39e] group-hover:from-[#0eb39e] group-hover:via-[#e8a040] group-hover:to-[#8b1a1a] transition-all duration-500" />
+
+                      {/* Framed Portrait Box - Rounded Circular Frame */}
+                      <div className="mt-2 relative aspect-square w-44 h-44 sm:w-52 sm:h-52 shrink-0 p-1.5 rounded-full bg-gradient-to-tr from-[#8b1a1a]/30 via-[#e8a040]/40 to-[#0eb39e]/30 shadow-md ring-2 ring-border/80 transition-all duration-500 group-hover:ring-4 group-hover:ring-[#8b1a1a]/50 group-hover:shadow-xl">
+                        <div className="h-full w-full overflow-hidden rounded-full bg-muted/40">
+                          <img
+                            src={member.image}
+                            alt={member.name}
+                            width={500}
+                            height={500}
+                            className="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110"
+                          />
+                        </div>
                       </div>
-                    </div>
-                  </Card>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
-          </Section>
+                      <div className="mt-6 flex flex-col items-center">
+                        <h3 className="font-display text-lg font-bold uppercase tracking-tight text-foreground sm:text-xl transition-colors duration-300 group-hover:text-[#8b1a1a]">
+                          {member.name}
+                        </h3>
+                        <div className="mt-2.5 inline-flex items-center rounded-full border border-[#8b1a1a]/30 bg-[#8b1a1a]/10 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-[#8b1a1a] transition-all duration-300 group-hover:bg-[#8b1a1a] group-hover:text-white group-hover:border-transparent">
+                          {member.role}
+                        </div>
+                      </div>
+                    </Card>
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
+            </Section>
+          </div>
         )}
 
         {/* 2. STATUTORY DOCUMENTS CONTENT */}
@@ -324,19 +370,30 @@ function AboutPage() {
               {STATUTORY_DOCUMENTS.map((doc, index) => (
                 <Card
                   key={index}
-                  className="group flex flex-col justify-between border-border/70 bg-card p-5 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-md"
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border-2 border-border/80 bg-card p-5 shadow-md transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/60 hover:shadow-xl ring-1 ring-black/5"
                 >
-                  <div className="flex items-start gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                      <CheckCircle2 className="h-5 w-5" />
+                  <div className="flex items-start gap-3.5">
+                    {/* Small official KITC logo emblem with verified check */}
+                    <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white border border-border shadow-sm p-1 overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:shadow-md">
+                      <img
+                        src="/kitc-favicon-512.png"
+                        alt="KITC Seal Logo"
+                        className="h-full w-full object-contain"
+                      />
+                      <span className="absolute -bottom-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-emerald-600 text-white shadow ring-1 ring-white">
+                        <CheckCircle2 className="h-3 w-3" />
+                      </span>
                     </div>
                     <div className="flex-1">
                       <h3 className="font-display text-base font-bold text-foreground leading-snug">
                         {doc.name}
                       </h3>
-                      <p className="mt-1 text-xs text-muted-foreground">
-                        Official PDF Certificate
-                      </p>
+                      <div className="mt-1 flex items-center gap-2">
+                        <span className="inline-flex items-center rounded-md bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-700 dark:text-emerald-400">
+                          Official PDF
+                        </span>
+                        <span className="text-[11px] text-muted-foreground">Govt / MCA Verified</span>
+                      </div>
                     </div>
                   </div>
 
@@ -654,23 +711,6 @@ function AboutPage() {
           </Section>
         )}
       </div>
-
-      {/* Where we operate (original section maintained) */}
-      <Section title="Where we operate">
-        <div className="grid gap-6 md:grid-cols-2">
-          {CENTERS.map((c) => (
-            <Card key={c.id} className="shadow-card">
-              <CardContent className="p-6">
-                <h3 className="font-display text-lg font-bold">{c.name}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{c.address}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-        <Button asChild className="mt-8">
-          <Link to="/contact">Visit or contact us</Link>
-        </Button>
-      </Section>
     </>
   );
 }

@@ -48,7 +48,7 @@ export function ScrollReveal({
 
   const getVisibleState = () => {
     const base: { opacity: number; filter?: string; scale?: number; x: number; y: number } = { opacity: 1, x: 0, y: 0 };
-    if (blur) base.filter = "blur(0px)";
+    if (blur) base.filter = "none";
     if (scale) base.scale = 1;
     return base;
   };
@@ -82,11 +82,10 @@ const staggerContainerVariants: Variants = {
 };
 
 const staggerItemVariants: Variants = {
-  hidden: { opacity: 0, y: 24, filter: "blur(6px)" },
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
     transition: {
       duration: 0.55,
       ease: [0.16, 1, 0.3, 1],

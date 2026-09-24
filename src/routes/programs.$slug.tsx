@@ -70,6 +70,11 @@ function ProgramDetail() {
               <Phone className="mr-1.5 h-4 w-4" /> Call {ORG.phone}
             </a>
           </Button>
+          <Button asChild size="lg" className="border-2 border-white/80 bg-transparent text-white hover:bg-white hover:text-primary font-semibold shadow-sm">
+            <a href={`tel:${ORG.secondaryPhone.replace(/\s/g, "")}`}>
+              <Phone className="mr-1.5 h-4 w-4" /> Call {ORG.secondaryPhone}
+            </a>
+          </Button>
         </div>
       </PageHero>
 
