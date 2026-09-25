@@ -31,6 +31,7 @@ export function Footer({ onOpenFeedback }: { onOpenFeedback?: () => void } = {})
         <div>
           <h3 className="font-display text-[11px] font-bold uppercase tracking-wider opacity-85">Explore</h3>
           <ul className="mt-2 space-y-1 text-[11px]">
+            <li><Link to="/centres" className="opacity-80 hover:opacity-100 hover:underline font-semibold text-[#e8a040]">★ Centres</Link></li>
             <li><Link to="/programs" className="opacity-80 hover:opacity-100 hover:underline">Programmes</Link></li>
             <li><Link to="/youth-empowerment" className="opacity-80 hover:opacity-100 hover:underline">Youth Empowerment</Link></li>
             <li><Link to="/gallery" className="opacity-80 hover:opacity-100 hover:underline">Gallery</Link></li>
@@ -53,7 +54,10 @@ export function Footer({ onOpenFeedback }: { onOpenFeedback?: () => void } = {})
 
         {/* Column 3: Our Centres */}
         <div>
-          <h3 className="font-display text-[11px] font-bold uppercase tracking-wider opacity-85">Our centres</h3>
+          <h3 className="font-display text-[11px] font-bold uppercase tracking-wider opacity-85 flex items-center justify-between">
+            <span>Our centres</span>
+            <Link to="/centres" className="text-[10px] text-[#e8a040] hover:underline font-semibold">View All &rarr;</Link>
+          </h3>
           <ul className="mt-2 space-y-2 text-[11px]">
             {CENTERS.map((c) => (
               <li key={c.id} className="flex gap-2 opacity-80">

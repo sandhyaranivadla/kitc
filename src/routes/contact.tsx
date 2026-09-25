@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -228,9 +228,14 @@ function ContactPage() {
           <Card className="overflow-hidden rounded-2xl border-2 border-border/80 shadow-card w-full">
             <CardContent className="p-6 md:p-8">
               <div className="text-center max-w-xl mx-auto mb-6">
-                <h2 className="font-display text-2xl font-bold text-foreground">
-                  Our Training Centres
-                </h2>
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                  <h2 className="font-display text-2xl font-bold text-foreground">
+                    Our Training Centres
+                  </h2>
+                  <Button asChild variant="outline" size="sm" className="rounded-full text-xs h-7 px-3 border-primary/40 text-primary hover:bg-primary hover:text-white">
+                    <Link to="/centres">View All State Centres &rarr;</Link>
+                  </Button>
+                </div>
                 <p className="mt-1 text-xs sm:text-sm text-muted-foreground">
                   Select an option below to view center locations and directions.
                 </p>

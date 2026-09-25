@@ -11,6 +11,7 @@ import { ORG } from "@/data/kitc";
 const NAV = [
   { to: "/", label: "Home" },
   { to: "/programs", label: "Our Programs" },
+  { to: "/centres", label: "Centres" },
   { to: "/youth-empowerment", label: "Youth Empowerment" },
   { to: "/gallery", label: "Gallery" },
   { to: "/about", label: "About Us" },
@@ -46,9 +47,9 @@ export function Header() {
           </div>
 
           <div className="flex items-center gap-3 text-[11px]">
-            <span className="hidden md:inline text-white/75">
-              Centres: <strong className="text-white font-semibold">Medchal & Alwal</strong> (Telangana)
-            </span>
+            <Link to="/centres" className="hidden md:inline text-white/80 hover:text-white transition-colors">
+              Centres: <strong className="text-white font-semibold underline decoration-[#e8a040] underline-offset-2">Medchal &amp; Alwal</strong> (Telangana)
+            </Link>
             <a
               href={ORG.whatsapp}
               target="_blank"
