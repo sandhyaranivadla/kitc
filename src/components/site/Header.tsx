@@ -47,8 +47,11 @@ export function Header() {
           </div>
 
           <div className="flex items-center gap-3 text-[11px]">
-            <Link to="/centres" className="hidden md:inline text-white/80 hover:text-white transition-colors">
-              Centres: <strong className="text-white font-semibold underline decoration-[#e8a040] underline-offset-2">Medchal &amp; Alwal</strong> (Telangana)
+            <Link
+              to="/centres"
+              className="hidden md:inline text-white/85 hover:text-white hover:underline transition-colors"
+            >
+              Centres: <strong className="text-white font-semibold">Medchal &amp; Alwal</strong> (Telangana)
             </Link>
             <a
               href={ORG.whatsapp}
@@ -142,6 +145,13 @@ export function Header() {
                     className="py-4 border-b border-[#8b2315]/20 hover:bg-[#8b2315]/5"
                   >
                     Get Involved
+                  </Link>
+                  <Link
+                    to="/centres"
+                    onClick={() => setOpen(false)}
+                    className="py-4 border-b border-[#8b2315]/20 hover:bg-[#8b2315]/5"
+                  >
+                    Centres
                   </Link>
                   <Link
                     to="/gallery"

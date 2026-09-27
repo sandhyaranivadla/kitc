@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { CheckCircle2, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -14,6 +14,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { CENTERS, ORG } from "@/data/kitc";
 import { contactSchema, submitContactMessage, type ContactInput } from "@/lib/leads";
+import { CentresGrid } from "@/components/site/CentresGrid";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -33,7 +34,6 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   const [done, setDone] = useState(false);
-  const [selectedRegion, setSelectedRegion] = useState<"telangana" | "medchal" | "alwal" | "all">("telangana");
   
   const form = useForm<ContactInput>({
     resolver: zodResolver(contactSchema),
@@ -51,13 +51,6 @@ function ContactPage() {
       toast.error("We couldn't send your message. Please call or WhatsApp us instead.");
     }
   }
-
-  const displayedCenters = CENTERS.filter((c) => {
-    if (selectedRegion === "all" || selectedRegion === "telangana") return true;
-    if (selectedRegion === "medchal") return c.id === "medchal";
-    if (selectedRegion === "alwal") return c.id === "alwal";
-    return true;
-  });
 
   return (
     <>
@@ -224,106 +217,10 @@ function ContactPage() {
             </Card>
           )}
 
-          {/* Unified Centers Maps Card with Telangana Option */}
-          <Card className="overflow-hidden rounded-2xl border-2 border-border/80 shadow-card w-full">
-            <CardContent className="p-6 md:p-8">
-              <div className="text-center max-w-xl mx-auto mb-6">
-                <div className="flex flex-wrap items-center justify-center gap-3">
-                  <h2 className="font-display text-2xl font-bold text-foreground">
-                    Our Training Centres
-                  </h2>
-                  <Button asChild variant="outline" size="sm" className="rounded-full text-xs h-7 px-3 border-primary/40 text-primary hover:bg-primary hover:text-white">
-                    <Link to="/centres">View All State Centres &rarr;</Link>
-                  </Button>
-                </div>
-                <p className="mt-1 text-xs sm:text-sm text-muted-foreground">
-                  Select an option below to view center locations and directions.
-                </p>
-
-                {/* Interactive State & Center Filter Tabs */}
-                <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setSelectedRegion("telangana")}
-                    className={`inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-bold transition-all ${
-                      selectedRegion === "telangana"
-                        ? "bg-[#8b1a1a] text-white shadow-md ring-2 ring-[#8b1a1a]/30 scale-105"
-                        : "bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border"
-                    }`}
-                  >
-                    <MapPin className="h-3.5 w-3.5 text-[#e8a040]" /> Telangana (Both Medchal &amp; Alwal)
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedRegion("medchal")}
-                    className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-all ${
-                      selectedRegion === "medchal"
-                        ? "bg-[#8b1a1a] text-white shadow-sm"
-                        : "bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border"
-                    }`}
-                  >
-                    Medchal Centre
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedRegion("alwal")}
-                    className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-all ${
-                      selectedRegion === "alwal"
-                        ? "bg-[#8b1a1a] text-white shadow-sm"
-                        : "bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border"
-                    }`}
-                  >
-                    Alwal Centre
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedRegion("all")}
-                    className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-all ${
-                      selectedRegion === "all"
-                        ? "bg-[#8b1a1a] text-white shadow-sm"
-                        : "bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border"
-                    }`}
-                  >
-                    All Centres
-                  </button>
-                </div>
-
-                {selectedRegion === "telangana" && (
-                  <div className="mt-3.5 inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 px-3.5 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-400">
-                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                    Telangana: Showing both centres (Medchal &amp; Alwal)
-                  </div>
-                )}
-              </div>
-
-              <div className="grid gap-6 md:grid-cols-2">
-                {displayedCenters.map((c) => (
-                  <div key={c.id} className="flex flex-col justify-between gap-4 border-2 border-border/80 rounded-2xl p-5 bg-background shadow-sm hover:border-primary/50 transition-all">
-                    <div>
-                      <div className="flex items-center justify-between gap-2">
-                        <h3 className="flex items-center gap-2 font-display text-base font-bold text-foreground">
-                          <MapPin className="h-4 w-4 text-primary shrink-0" /> {c.name}
-                        </h3>
-                        <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase text-primary">
-                          Telangana
-                        </span>
-                      </div>
-                      <p className="mt-2 text-xs leading-relaxed text-slate-700 dark:text-slate-300 font-medium min-h-[44px]">
-                        {c.address}
-                      </p>
-                    </div>
-                    <iframe
-                      title={`Map of ${c.name}`}
-                      src={`https://www.google.com/maps?q=${encodeURIComponent(c.mapQuery)}&output=embed`}
-                      loading="lazy"
-                      className="h-48 w-full border-0 rounded-xl shadow-inner"
-                      referrerPolicy="no-referrer-when-downgrade"
-                    />
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+          {/* Centres & Locations Section matching Reference UI */}
+          <div className="w-full pt-4">
+            <CentresGrid showTitle={true} initialState="telangana" />
+          </div>
         </div>
       </Section>
     </>
