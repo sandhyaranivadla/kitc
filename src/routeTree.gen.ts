@@ -17,6 +17,7 @@ import { Route as CentersRouteImport } from './routes/centers'
 import { Route as CentresRouteImport } from './routes/centres'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DonateRouteImport } from './routes/donate'
+import { Route as Donate_backupRouteImport } from './routes/donate_backup'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as HireRouteImport } from './routes/hire'
 import { Route as RegisterRouteImport } from './routes/register'
@@ -64,6 +65,11 @@ const DonateRoute = DonateRouteImport.update({
   path: '/donate',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Donate_backupRoute = Donate_backupRouteImport.update({
+  id: '/donate_backup',
+  path: '/donate_backup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GalleryRoute = GalleryRouteImport.update({
   id: '/gallery',
   path: '/gallery',
@@ -108,6 +114,7 @@ export interface FileRoutesByFullPath {
   '/centres': typeof CentresRoute
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
+  '/donate_backup': typeof Donate_backupRoute
   '/gallery': typeof GalleryRoute
   '/hire': typeof HireRoute
   '/register': typeof RegisterRoute
@@ -124,6 +131,7 @@ export interface FileRoutesByTo {
   '/centres': typeof CentresRoute
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
+  '/donate_backup': typeof Donate_backupRoute
   '/gallery': typeof GalleryRoute
   '/hire': typeof HireRoute
   '/register': typeof RegisterRoute
@@ -142,6 +150,7 @@ export interface FileRoutesById {
   '/centres': typeof CentresRoute
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
+  '/donate_backup': typeof Donate_backupRoute
   '/gallery': typeof GalleryRoute
   '/hire': typeof HireRoute
   '/register': typeof RegisterRoute
@@ -160,6 +169,7 @@ export interface FileRouteTypes {
     | '/centres'
     | '/contact'
     | '/donate'
+    | '/donate_backup'
     | '/gallery'
     | '/hire'
     | '/register'
@@ -176,6 +186,7 @@ export interface FileRouteTypes {
     | '/centres'
     | '/contact'
     | '/donate'
+    | '/donate_backup'
     | '/gallery'
     | '/hire'
     | '/register'
@@ -193,6 +204,7 @@ export interface FileRouteTypes {
     | '/centres'
     | '/contact'
     | '/donate'
+    | '/donate_backup'
     | '/gallery'
     | '/hire'
     | '/register'
@@ -211,6 +223,7 @@ export interface RootRouteChildren {
   CentresRoute: typeof CentresRoute
   ContactRoute: typeof ContactRoute
   DonateRoute: typeof DonateRoute
+  Donate_backupRoute: typeof Donate_backupRoute
   GalleryRoute: typeof GalleryRoute
   HireRoute: typeof HireRoute
   RegisterRoute: typeof RegisterRoute
@@ -275,6 +288,13 @@ declare module '@tanstack/react-router' {
       path: '/donate'
       fullPath: '/donate'
       preLoaderRoute: typeof DonateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/donate_backup': {
+      id: '/donate_backup'
+      path: '/donate_backup'
+      fullPath: '/donate_backup'
+      preLoaderRoute: typeof Donate_backupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gallery': {
@@ -349,6 +369,7 @@ const rootRouteChildren: RootRouteChildren = {
   CentresRoute: CentresRoute,
   ContactRoute: ContactRoute,
   DonateRoute: DonateRoute,
+  Donate_backupRoute: Donate_backupRoute,
   GalleryRoute: GalleryRoute,
   HireRoute: HireRoute,
   RegisterRoute: RegisterRoute,

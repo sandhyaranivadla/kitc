@@ -44,7 +44,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { CENTERS, DONATION_ITEMS, type DonationItem, ORG } from "@/data/kitc";
 
-export const Route = createFileRoute("/donate")({
+export const Route = createFileRoute("/donate_backup")({
   head: () => ({
     meta: [
       { title: "Support Us & CSR — In-Kind Donations & Giving | KITC" },
