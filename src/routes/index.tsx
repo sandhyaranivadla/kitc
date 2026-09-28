@@ -338,30 +338,7 @@ function HomePage() {
         </ScrollReveal>
       </Section>
 
-      <div className="bg-secondary/60">
-        <Section title="Our offices in Hyderabad" description="Walk in to either centre, or message us before you visit.">
-          <div className="grid gap-6 md:grid-cols-2">
-            {CENTERS.map((c, idx) => (
-              <ScrollReveal delay={idx * 0.1} direction="up" key={c.id} className="block group">
-                <Link to="/contact" className="block h-full">
-                  <Card className="h-full shadow-card transition-all duration-300 group-hover:shadow-lg group-hover:-translate-y-1 group-hover:border-primary/20">
-                  <CardContent className="flex gap-3 p-6">
-                    <MapPin className="mt-1 h-5 w-5 shrink-0 text-primary transition-colors group-hover:text-blue-600" />
-                    <div>
-                      <h3 className="font-display text-lg font-bold transition-colors group-hover:text-blue-600">{c.name}</h3>
-                      <p className="mt-1 text-sm text-muted-foreground">{c.address}</p>
-                      <span className="mt-4 inline-block text-sm font-medium text-primary underline-offset-4 group-hover:underline">
-                        Get directions
-                      </span>
-                    </div>
-                  </CardContent>
-                </Card>
-                </Link>
-              </ScrollReveal>
-            ))}
-          </div>
-        </Section>
-      </div>
+
 
       {/* Floating Social Icons */}
       <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-4">

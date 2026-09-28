@@ -25,7 +25,13 @@ import { PageHero, Section } from "@/components/site/Section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -74,9 +80,6 @@ export function DonatePage() {
   const handleOpenPledge = (item: DonationItem) => {
     setSelectedItem(item);
     setPledgeSubmitted(false);
-    setTimeout(() => {
-      document.getElementById("pledge-form")?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
   };
 
   const handlePledgeSubmit = (e: React.FormEvent) => {
@@ -327,164 +330,128 @@ export function DonatePage() {
         </Section>
       </div>
 
-      {/* PLEDGE FORM SECTION */}
-      <Section id="pledge-form" className="scroll-mt-20 py-12 bg-muted/20 border-t border-border">
-        <div className="container-page">
-          <div className="mx-auto max-w-3xl text-center mb-10">
-            <h2 className="font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-              Donation Application
-            </h2>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Fill in your details below. If you selected an item to pledge, we will coordinate the drop-off or pickup.
-            </p>
-          </div>
+      {/* PLEDGE DIALOG MODAL */}
+      <Dialog open={!!selectedItem} onOpenChange={(open) => !open && setSelectedItem(null)}>
+        <DialogContent className="sm:max-w-lg">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 font-display text-lg">
+              <Gift className="h-5 w-5 text-primary" /> Pledge Donation: {selectedItem?.title}
+            </DialogTitle>
+            <DialogDescription className="text-xs">
+              Thank you for contributing! Fill in your details and our team will coordinate the drop-off or pickup.
+            </DialogDescription>
+          </DialogHeader>
 
-          <div className="grid gap-10 lg:grid-cols-3">
-            <div className="lg:col-span-2">
-              {pledgeSubmitted ? (
-                <Card className="shadow-card">
-                  <CardContent className="p-8 text-center space-y-4">
-                    <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600">
-                      <CheckCircle2 className="h-8 w-8" />
-                    </div>
-                    <h3 className="font-display text-xl font-bold text-foreground">
-                      Pledge Received!
-                    </h3>
-                    <p className="text-sm text-muted-foreground max-w-sm mx-auto">
-                      Thank you, <strong>{pledgeForm.donorName}</strong>. Our coordinator will call you at{" "}
-                      <strong>{pledgeForm.phone}</strong> to confirm the delivery or pickup details{selectedItem ? ` for ${selectedItem.title}` : ''}.
-                    </p>
-                    <div className="pt-3 flex justify-center gap-3">
-                      <Button onClick={() => {
-                        setSelectedItem(null);
-                        setPledgeSubmitted(false);
-                      }} variant="outline" size="sm">
-                        Make another pledge
-                      </Button>
-                      <Button asChild size="sm">
-                        <a href={`tel:${ORG.phone.replace(/\s/g, "")}`}>
-                          <Phone className="mr-1.5 h-3.5 w-3.5" /> Call {ORG.phone}
-                        </a>
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ) : (
-                <Card className="shadow-card">
-                  <CardContent className="p-6 md:p-8">
-                    <form onSubmit={handlePledgeSubmit} className="space-y-8">
-                      <div>
-                        <h3 className="mb-4 text-lg font-medium text-foreground">
-                          {selectedItem ? `Pledging: ${selectedItem.title}` : 'Your Details'}
-                        </h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                          <div className="space-y-1.5">
-                            <Label htmlFor="donorName">Full Name *</Label>
-                            <Input
-                              id="donorName"
-                              required
-                              placeholder="Your name"
-                              value={pledgeForm.donorName}
-                              onChange={(e) => setPledgeForm({ ...pledgeForm, donorName: e.target.value })}
-                            />
-                          </div>
-                          <div className="space-y-1.5">
-                            <Label htmlFor="phone">Mobile Number *</Label>
-                            <Input
-                              id="phone"
-                              required
-                              type="tel"
-                              placeholder="10-digit mobile"
-                              value={pledgeForm.phone}
-                              onChange={(e) => setPledgeForm({ ...pledgeForm, phone: e.target.value })}
-                            />
-                          </div>
-                          <div className="space-y-1.5">
-                            <Label htmlFor="quantity">Pledged Quantity</Label>
-                            <Input
-                              id="quantity"
-                              placeholder={`e.g. ${selectedItem?.suggestedQty.split(",")[0] || "10 units"}`}
-                              value={pledgeForm.quantity}
-                              onChange={(e) => setPledgeForm({ ...pledgeForm, quantity: e.target.value })}
-                            />
-                          </div>
-                          <div className="space-y-1.5">
-                            <Label htmlFor="org">Organisation (Optional)</Label>
-                            <Input
-                              id="org"
-                              placeholder="Company / Trust"
-                              value={pledgeForm.org}
-                              onChange={(e) => setPledgeForm({ ...pledgeForm, org: e.target.value })}
-                            />
-                          </div>
-                          <div className="space-y-1.5 sm:col-span-2">
-                            <Label htmlFor="center">Preferred Delivery / Centre</Label>
-                            <Select
-                              value={pledgeForm.preferredCenter}
-                              onValueChange={(val) => setPledgeForm({ ...pledgeForm, preferredCenter: val })}
-                            >
-                              <SelectTrigger id="center">
-                                <SelectValue placeholder="Select drop-off mode" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="Medchal Centre">Drop-off at Medchal Centre</SelectItem>
-                                <SelectItem value="Alwal Centre">Drop-off at Alwal Centre</SelectItem>
-                                <SelectItem value="Pickup Required">Request Doorstep Pickup in Hyderabad</SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-                          <div className="space-y-1.5 sm:col-span-2">
-                            <Label htmlFor="notes">Additional Notes</Label>
-                            <Textarea
-                              id="notes"
-                              rows={3}
-                              placeholder="Item specifications, preferred date/time..."
-                              value={pledgeForm.notes}
-                              onChange={(e) => setPledgeForm({ ...pledgeForm, notes: e.target.value })}
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="pt-2">
-                        <Button type="submit" size="lg" className="w-full md:w-auto font-semibold">
-                          Confirm Pledge
-                        </Button>
-                      </div>
-                    </form>
-                  </CardContent>
-                </Card>
-              )}
+          {pledgeSubmitted ? (
+            <div className="py-6 text-center space-y-4">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600">
+                <CheckCircle2 className="h-8 w-8" />
+              </div>
+              <h3 className="font-display text-xl font-bold text-foreground">
+                Pledge Received!
+              </h3>
+              <p className="text-xs text-muted-foreground max-w-sm mx-auto">
+                Thank you, <strong>{pledgeForm.donorName}</strong>. Our coordinator will call you at{" "}
+                <strong>{pledgeForm.phone}</strong> to confirm the delivery or pickup details for {selectedItem?.title}.
+              </p>
+              <div className="pt-3 flex justify-center gap-3">
+                <Button onClick={() => setSelectedItem(null)} variant="outline" size="sm">
+                  Close
+                </Button>
+                <Button asChild size="sm">
+                  <a href={`tel:${ORG.phone.replace(/\s/g, "")}`}>
+                    <Phone className="mr-1.5 h-3.5 w-3.5" /> Call {ORG.phone}
+                  </a>
+                </Button>
+              </div>
             </div>
+          ) : (
+            <form onSubmit={handlePledgeSubmit} className="space-y-4 mt-2">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1.5">
+                  <Label htmlFor="donorName" className="text-xs">Full Name *</Label>
+                  <Input
+                    id="donorName"
+                    required
+                    placeholder="Your name"
+                    value={pledgeForm.donorName}
+                    onChange={(e) => setPledgeForm({ ...pledgeForm, donorName: e.target.value })}
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <Label htmlFor="phone" className="text-xs">Mobile Number *</Label>
+                  <Input
+                    id="phone"
+                    required
+                    type="tel"
+                    placeholder="10-digit mobile"
+                    value={pledgeForm.phone}
+                    onChange={(e) => setPledgeForm({ ...pledgeForm, phone: e.target.value })}
+                  />
+                </div>
+              </div>
 
-            <aside className="space-y-4">
-              <Card className="shadow-card">
-                <CardContent className="p-6">
-                  <h2 className="font-display text-base font-bold">What happens next</h2>
-                  <ol className="mt-4 space-y-3 text-sm text-muted-foreground">
-                    <li>1. We review your pledge details.</li>
-                    <li>2. Our coordinator will contact you to confirm timing.</li>
-                    <li>3. We arrange the drop-off or doorstep pickup.</li>
-                  </ol>
-                </CardContent>
-              </Card>
-              <Card className="shadow-card">
-                <CardContent className="p-6">
-                  <h2 className="font-display text-base font-bold">Need assistance?</h2>
-                  <p className="mt-4 text-sm text-muted-foreground">
-                    If you have bulk equipment or require special logistics, please call us directly.
-                  </p>
-                  <Button asChild variant="outline" size="sm" className="mt-4 w-full">
-                    <a href={`tel:${ORG.phone.replace(/\s/g, "")}`}>
-                      <Phone className="mr-2 h-4 w-4" /> Call Support
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
-            </aside>
-          </div>
-        </div>
-      </Section>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1.5">
+                  <Label htmlFor="quantity" className="text-xs">Pledged Quantity</Label>
+                  <Input
+                    id="quantity"
+                    placeholder={`e.g. ${selectedItem?.suggestedQty.split(",")[0] || "10 units"}`}
+                    value={pledgeForm.quantity}
+                    onChange={(e) => setPledgeForm({ ...pledgeForm, quantity: e.target.value })}
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <Label htmlFor="org" className="text-xs">Organisation (Optional)</Label>
+                  <Input
+                    id="org"
+                    placeholder="Company / Trust"
+                    value={pledgeForm.org}
+                    onChange={(e) => setPledgeForm({ ...pledgeForm, org: e.target.value })}
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <Label htmlFor="center" className="text-xs">Preferred Delivery / Centre</Label>
+                <Select
+                  value={pledgeForm.preferredCenter}
+                  onValueChange={(val) => setPledgeForm({ ...pledgeForm, preferredCenter: val })}
+                >
+                  <SelectTrigger id="center">
+                    <SelectValue placeholder="Select drop-off mode" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Medchal Centre">Drop-off at Medchal Centre</SelectItem>
+                    <SelectItem value="Alwal Centre">Drop-off at Alwal Centre</SelectItem>
+                    <SelectItem value="Pickup Required">Request Doorstep Pickup in Hyderabad</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-1.5">
+                <Label htmlFor="notes" className="text-xs">Additional Notes</Label>
+                <Textarea
+                  id="notes"
+                  rows={2}
+                  placeholder="Item specifications, preferred date/time..."
+                  value={pledgeForm.notes}
+                  onChange={(e) => setPledgeForm({ ...pledgeForm, notes: e.target.value })}
+                />
+              </div>
+
+              <div className="flex justify-end gap-2 pt-2">
+                <Button type="button" variant="outline" size="sm" onClick={() => setSelectedItem(null)}>
+                  Cancel
+                </Button>
+                <Button type="submit" size="sm" className="font-semibold">
+                  Confirm Pledge
+                </Button>
+              </div>
+            </form>
+          )}
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
