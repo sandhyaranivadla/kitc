@@ -37,7 +37,6 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { CENTERS, DONATION_ITEMS, type DonationItem, ORG } from "@/data/kitc";
-import { submitDonation } from "@/lib/leads";
 
 export const Route = createFileRoute("/donate")({
   head: () => ({
@@ -80,29 +79,14 @@ export function DonatePage() {
     }, 100);
   };
 
-  const handlePledgeSubmit = async (e: React.FormEvent) => {
+  const handlePledgeSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!pledgeForm.donorName || !pledgeForm.phone) {
       toast.error("Please enter your name and phone number.");
       return;
     }
-    
-    try {
-      await submitDonation({
-        donor_name: pledgeForm.donorName,
-        phone: pledgeForm.phone,
-        email: pledgeForm.email,
-        organisation: pledgeForm.org,
-        amount: pledgeForm.quantity,
-        purpose: selectedItem ? selectedItem.title : "In-Kind Donation",
-        message: `Preferred Center: ${pledgeForm.preferredCenter}. Notes: ${pledgeForm.notes}`,
-      });
-      setPledgeSubmitted(true);
-      toast.success("Thank you for your generous pledge!");
-    } catch (error) {
-      console.error(error);
-      toast.error("We couldn't submit your pledge. Please try again.");
-    }
+    setPledgeSubmitted(true);
+    toast.success("Thank you for your generous pledge!");
   };
 
   return (
