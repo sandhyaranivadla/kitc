@@ -628,6 +628,24 @@ export const STATUTORY_DOCUMENTS: StatutoryDocument[] = [
     pdfUrl: "/documents/12A-Certificate.pdf",
     fallbackUrl: "https://kakatheeyagroup.com/wp-content/uploads/2023/11/12A-Certificate.pdf",
   },
+  {
+    name: "Track Record & Domain Expertise Declaration",
+    filename: "Track-Record-Declaration.pdf",
+    pdfUrl: "/documents/Track-Record-Declaration.pdf",
+    fallbackUrl: "/documents/Track-Record-Declaration.pdf",
+  },
+  {
+    name: "Non-Political & Non-Religious Declaration",
+    filename: "Non-Political-Religious-Declaration.pdf",
+    pdfUrl: "/documents/Non-Political-Religious-Declaration.pdf",
+    fallbackUrl: "/documents/Non-Political-Religious-Declaration.pdf",
+  },
+  {
+    name: "Declaration of No Criminal Proceedings",
+    filename: "Non-Criminal-Proceedings-Declaration.pdf",
+    pdfUrl: "/documents/Non-Criminal-Proceedings-Declaration.pdf",
+    fallbackUrl: "/documents/Non-Criminal-Proceedings-Declaration.pdf",
+  },
 ];
 
 export interface DonationItem {
